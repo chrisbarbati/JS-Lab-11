@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+      //Select the existing elements
+        const list = document.querySelector("ul");
+        const input = document.querySelector("input");
+        const button = document.querySelector("button");
+
+        //Add a new listener for when the add button is clicked
+        button.addEventListener('click', function (){
+          //Store the value of the input box and clear out the content afterwards
+          let currentInput = input.value;
+          input.textContent = "";
+
+          //Add the new elements
+          const listItem = document.createElement("li");
+          const newSpan = document.createElement("span");
+          const newButton = document.createElement("button");
+
+          //Add the delete functio
+          newButton.addEventListener('click', function() {
+            list.removeChild(listItem);
+          });
+
+          //Add the span and button as children of the <li> element, so they can all be deleted together
+          listItem.appendChild(newSpan);
+          listItem.appendChild(newButton);
+
+          //Set the contents
+          newSpan.textContent = currentInput;
+          newButton.textContent = "Delete";
+
+          //Add to the list.
+          list.appendChild(listItem);
+        });
+    </script>
+  </body>
+</html>
